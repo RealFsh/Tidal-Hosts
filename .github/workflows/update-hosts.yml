@@ -1,5 +1,3 @@
-name: 自动更新 hosts
-
 on:
   schedule:
     # 每 3 小时更新一次
@@ -10,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          # 设置 node 版本为 16.x
+          node-version: 16.x
       - name: 获取最新域名列表
         run: |
           # 获取需加速的域名列表
@@ -32,7 +33,7 @@ jobs:
             lowest_ip=$(echo $ips | sort -n | head -1)
 
             # 将最新 IP 写入 hosts 文件
-            echo $lowest_ip $domain >> Tidal-Hosts/hosts
+            echo $lowest_ip $domain >> /home/your_username/hosts
           done
 
       - name: 推送最新 hosts
