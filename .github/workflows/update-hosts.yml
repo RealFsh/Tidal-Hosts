@@ -1,8 +1,8 @@
 name: 更新 hosts
 on:
   schedule:
-    # 每 3 小时更新一次
-    - cron: '0 */3 * * *'
+    # 每分钟运行一次
+    - cron: '* * * * *'
 
 jobs:
   update-hosts:
