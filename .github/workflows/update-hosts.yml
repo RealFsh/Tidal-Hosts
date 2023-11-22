@@ -1,5 +1,3 @@
-git config --global user.email "807936034@qq.com"
-git config --global user.name "RealFsh"
 on:
   schedule:
     # 每 3 小时更新一次
@@ -20,6 +18,14 @@ jobs:
 
           # 添加您需要的域名
           domain_list+=("sp-ad-cf.audio.tidal.com" "ab-pr-cf.audio.tidal.com" "vb-ad-cf.video.tidal.com" "im-cf.manifest.tidal.com" "sp-pr-fa.audio.tidal.com" "ab-pr-fa.audio.tidal.com" "vb-ad-fa.video.tidal.com" "im-fa.manifest.tidal.com" "download.tidal.com" "desktop.tidal.com" "images.tidal.com" "login.tidal.com" "resources.tidal.com" "offer.tidal.com")
+
+      - name: 设置 Git 用户身份
+        run: |
+          # 设置 Git 用户名
+          git config --global user.name "RealFsh"
+
+          # 设置 Git 用户邮箱
+          git config --global user.email "807936034@qq.com"
 
       - name: 获取域名最新 IP
         run: |
