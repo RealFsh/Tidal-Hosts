@@ -1,3 +1,4 @@
+name: 更新 hosts
 on:
   schedule:
     # 每 3 小时更新一次
