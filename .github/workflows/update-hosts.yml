@@ -1,3 +1,5 @@
+git config --global user.email "807936034@qq.com"
+git config --global user.name "RealFsh"
 on:
   schedule:
     # 每 3 小时更新一次
@@ -33,7 +35,7 @@ jobs:
             lowest_ip=$(echo $ips | sort -n | head -1)
 
             # 将最新 IP 写入 hosts 文件
-            echo $lowest_ip $domain >> /home/your_username/hosts
+            echo $lowest_ip $domain >> /RealFsh/Tidal-Hosts/blob/main/hosts
           done
 
       - name: 推送最新 hosts
