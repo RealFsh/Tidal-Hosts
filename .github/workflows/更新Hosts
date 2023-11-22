@@ -1,0 +1,45 @@
+name: 更新 hosts
+on:
+  schedule:
+    # 每 3 小时更新一次
+    - cron: '0 */3 * * *'
+
+jobs:
+  update-hosts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # 设置 node 版本为 16.x
+          node-version: 16.x
+      - name: 获取最新域名列表
+        run: |
+          # 获取需加速的域名列表
+          domain_list=$(cat hosts | grep -v '#' | awk '{print $1}')
+
+          # 添加您需要的域名
+          domain_list+=("sp-ad-cf.audio.tidal.com" "ab-pr-cf.audio.tidal.com" "vb-ad-cf.video.tidal.com" "im-cf.manifest.tidal.com" "sp-pr-fa.audio.tidal.com" "ab-pr-fa.audio.tidal.com" "vb-ad-fa.video.tidal.com" "im-fa.manifest.tidal.com" "download.tidal.com" "desktop.tidal.com" "images.tidal.com" "login.tidal.com" "resources.tidal.com" "offer.tidal.com")
+
+      - name: 获取域名最新 IP
+        run: |
+          # 循环获取每个域名的最新 IP
+          for domain in $domain_list; do
+            # 使用站长工具获取域名最新 IP
+            ip=$(curl -s -o /dev/null -w "%{IP}" https://tool.chinaz.com/Tools/ping.aspx?host=$domain)
+
+            # 获取该域名的所有 IP
+            ips=$(curl -s -o /dev/null -w "%{IP}" https://tool.chinaz.com/Tools/ping.aspx?host=$domain | tr '\n' ' ')
+
+            # 获取 Ping 值最低的 IP
+            lowest_ip=$(echo $ips | sort -n | head -1)
+
+            # 将最新 IP 写入 hosts 文件
+            echo $lowest_ip $domain >> /home/your_username/hosts
+          done
+
+      - name: 推送最新 hosts
+        run: |
+          # 推送最新 hosts 到 GitHub
+          git add hosts
+          git commit -m "更新 hosts"
+          git push
