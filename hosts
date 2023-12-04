@@ -1,7 +1,8 @@
-0.0.0.0 sp-pr-fa.audio.tidal.com
-0.0.0.0 ab-pr-fa.audio.tidal.com
-0.0.0.0 vb-ad-fa.video.tidal.com
-0.0.0.0 im-fa.manifest.tidal.com
+151.101.194.142 images.tidal.com
+151.101.194.142 sp-pr-fa.audio.tidal.com
+151.101.194.142 ab-pr-fa.audio.tidal.com
+151.101.194.142 vb-ad-fa.video.tidal.com
+151.101.194.142 im-fa.manifest.tidal.com
 13.225.1.251 login.tidal.com
 13.225.1.251 resources.tidal.com
 13.225.1.251 offer.tidal.com
@@ -9,6 +10,5 @@
 13.225.1.251 ab-pr-cf.audio.tidal.com
 13.225.1.251 vb-ad-cf.video.tidal.com
 13.225.1.251 im-cf.manifest.tidal.com
-52.84.225.22 download.tidal.com
-52.84.225.22 desktop.tidal.com
-151.101.230.142 images.tidal.com
+52.84.225.37 download.tidal.com
+52.84.225.37 desktop.tidal.com
